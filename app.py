@@ -13,10 +13,12 @@ if not os.path.exists(model_path):
     st.warning("Downloading model from Google Drive...")
     gdown.download(id=file_id, output=model_path, quiet=False)
 
+def load_model():
+    return tf.keras.models.load_model(model_path)
 
-model_path = "trained_plant_disease_model.keras"
+model = load_model()
+
 def model_prediction(test_image):
-    model = tf.keras.models.load_model(model_path)
     image = tf.keras.preprocessing.image.load_img(test_image,target_size=(128,128))
     input_arr = tf.keras.preprocessing.image.img_to_array(image)
     input_arr = np.array([input_arr]) #convert single image to batch
