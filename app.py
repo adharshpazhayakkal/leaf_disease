@@ -11,7 +11,7 @@ model_path = "trained_plant_disease_model.keras"
 
 if not os.path.exists(model_path):
     st.warning("Downloading model from Google Drive...")
-    gdown.download(id=file_id, output=model_path, quiet=False)
+    gdown.download(id=file_id, output=model_path, quiet=False,fuzzy=True)
 
 def load_model():
     return tf.keras.models.load_model(model_path)
